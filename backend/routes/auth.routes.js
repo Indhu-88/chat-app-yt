@@ -9,6 +9,7 @@ const router = express.Router();
 //    console.log("SIGNUP");       //backend
 // });
 
+//REST API endpoints
 router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout", logout);

@@ -23,11 +23,8 @@ export const signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     //getprofile pic from API
-    const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-    const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
 
-    // const boyProfilePic = `https://api.dicebear.com/9.x/adventurer/svg?seed=${username}`;
-    // const girlProfilePic = `https://api.dicebear.com/9.x/adventurerFemale/svg?seed=${username}`;
+    const profilePic = `https://api.dicebear.com/9.x/adventurer/svg?seed=${username}`;
 
     //Create new User
     const newUser = new User({
@@ -35,7 +32,7 @@ export const signup = async (req, res) => {
       username,
       password: hashedPassword,
       gender,
-      profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
+      profilePic,
     });
 
     if (newUser) {
@@ -45,10 +42,10 @@ export const signup = async (req, res) => {
       //save newUser
       await newUser.save();
 
-      //send to frontend
+      //send to frontend as JSON string over http
       res.status(201).json({
         _id: newUser._id,
-        fullname: newUser.fullName,
+        fullName: newUser.fullName,
         gender: newUser.gender,
         profilePic: newUser.profilePic,
       });
@@ -95,7 +92,7 @@ export const login = async (req, res) => {
     res.status(501).json({ error: "Internal Server Error" });
   }
 };
-
+// ------------------------------------------------------------------------------
 export const logout = (req, res) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 });
