@@ -6,12 +6,14 @@ import toast from "react-hot-toast";
 
 // ------------------------------------------------------------------
 // search input above sidebar
-// find a user from sidebar based on input value
+
+// functions
+// - update setSelectedConversation with matching User entered in <input>
 // ------------------------------------------------------------------
 const SearchInput = () => {
   const [search, setSearch] = useState("");
-  const { setSelectedConversation } = useConversation(); //  select/highlight user from sidebar
-  const { conversations } = useGetConversation(); // []of users, JS Object fro sidebar
+  const { setSelectedConversation } = useConversation(); //  selected/highlighted user from sidebar
+  const { conversations } = useGetConversation(); // []of users, JS Object for sidebar
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +23,8 @@ const SearchInput = () => {
       return toast.error("Search term must be 3 characters long ");
     }
 
-    //find matching user
+    // .includes -> returns true or false
+    // .find  -> returns the element itself or undefined
     const conversation = conversations.find((c) =>
       c.fullName.toLowerCase().includes(search.toLowerCase()),
     );
@@ -29,7 +32,7 @@ const SearchInput = () => {
     //sidebar user found - highlight
     if (conversation) {
       setSelectedConversation(conversation);
-      setSearch("");
+      setSearch(""); //clear input field
     } else {
       return toast.error("No user found");
     }

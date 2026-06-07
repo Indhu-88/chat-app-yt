@@ -6,14 +6,17 @@ import useConversation from "../../zustand/useCoversation";
 import { useAuthContext } from "../../context/AuthContext";
 
 // ------------------------------------------------------------------------
-// here setConverstaion has the slected user from sidebar
+// Basically prints the conversation between authUser and selctedConversation user
+// if no selectedConversation user, <NoChatSelected>
+
 // here useEffect is used to cleanup the conversation msgs
-// runs when the component unmounts or setSelectedConversation
+// runs when the component unmounts or selected user changes from sidebar click
 // ------------------------------------------------------------------------
 
 const MessageContainer = () => {
-  const { selectedConversation, setSelectedConversation } = useConversation();
+  const { selectedConversation, setSelectedConversation } = useConversation(); //selected user
 
+  // Without this cleanup, the last selected conversation would remain in your Zustand store
   useEffect(() => {
     return () => {
       setSelectedConversation(null);
@@ -45,7 +48,6 @@ const MessageContainer = () => {
 //skeleton
 const NoChatSelected = () => {
   const { authUser } = useAuthContext();
-  console.log(authUser);
 
   return (
     <div className="flex items-center justify-center w-full h-full">

@@ -21,6 +21,7 @@ export const useLogout = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
+
       const data = await res.json();
       if (!data) {
         throw new Error(data.error);

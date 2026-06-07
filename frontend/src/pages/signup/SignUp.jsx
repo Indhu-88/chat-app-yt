@@ -93,6 +93,7 @@ const SignUp = () => {
           </div>
 
           {/* male and female checkbox selection */}
+          {/* custom component */}
           <GenderCheckbox
             onCheckboxChange={handleCheckboxChange}
             selectedGender={inputs.gender}
@@ -109,7 +110,7 @@ const SignUp = () => {
           <div>
             <button
               className="btn btn-block btn-sm mt-2 border border-slate-700"
-              disabled={loading}
+              disabled={loading} //no user interaction
             >
               {loading ? (
                 <span className="loading loading-spinner"></span>

@@ -2,8 +2,10 @@ import { useSocketContext } from "../../context/SocketContext";
 import useConversation from "../../zustand/useCoversation";
 
 // -------------------------------------------------------------------------------
-// SIDEBAR DISPLAY with profilePic, name and icon
-// select user on sidebar click
+// functions
+// - SIDEBAR DISPLAY with profilePic, name and icon
+//  - a user is clciked update selectedConversation
+//  - also if already selected User then blue bg
 
 // conversation is list of User Object
 // {_id: '6a11f1c7419d58b2ea6ca0bf', fullName: 'Sony', username: 'Sony_123', gender: 'female', profilePic: 'https://avatar.iran.liara.run/public/girl?username=Sony_123', …}
@@ -12,7 +14,9 @@ import useConversation from "../../zustand/useCoversation";
 // -------------------------------------------------------------------------------
 
 const Conversation = ({ conversation, emoji, lastIdx }) => {
-  const { selectedConversation, setSelectedConversation } = useConversation(); //this sets the online user
+  const { selectedConversation, setSelectedConversation } = useConversation(); //if this user gets clicked
+
+  //if user already selected then blue bg
   const isSelected = selectedConversation?._id === conversation._id; //if selected keep it blue entire time
 
   //this helps in getting the online users

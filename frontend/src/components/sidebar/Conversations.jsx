@@ -22,7 +22,7 @@ const Conversations = () => {
           key={conversation._id}
           conversation={conversation}
           emoji={getRandomEmoji()}
-          lastIdx={idx === conversations.length - 1} //to remove divider below last user 0 === 3(f),3===3(t)
+          lastIdx={idx === conversations.length - 1} //to remove divider below last user
         />
       ))}
     </div>
