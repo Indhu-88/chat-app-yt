@@ -24,20 +24,20 @@ export const useListenMessages = () => {
     if (!socket) return;
 
     // newMessage-> payload (data object)
-    socket.on("newMsg", (newMessage) => {
+    socket?.on("newMsg", (newMessage) => {
       newMessage.shouldShake = true; //flag for animation, custom property name, add shakeClass in Message.jsx
 
       const sound = new Audio(notificationSound); //for sound when msg received
       sound.play();
 
       // setMessages([...messages, newMessage]); //new msgs
-      setMessages((prev) => [...prev, newMessage]); //real-time incoming messages
+      setMessages([...messages, newMessage]); //real-time incoming messages
     });
 
     return () => {
       socket?.off("newMsg");
     };
-  }, [socket, setMessages]);
+  }, [socket, setMessages]); //add messages
 };
 
 // ---------------------------------WHY useEffect()-------------------

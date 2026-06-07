@@ -30,12 +30,10 @@ const userSocketMap = {}; //{userId = socket.Id}, userSocketMap["abc123"] = "soc
 io.on("connection", (socket) => {
   //socket.handshake.query.userId comes in as a string from the client.
   const userId = socket.handshake.query.userId; //userId is authUser._id
-  userSocketMap[userId] = socket.id; //for each authUser = socket.id
+  if (userId != "undefined") userSocketMap[userId] = socket.id; //for each authUser = socket.id
 
   //io.emit() is used to send events to all connected clients
-  if (userId != "undefined") {
-    io.emit("getOnlineUsers", Object.keys(userSocketMap)); //keys are authUser._id
-  }
+  io.emit("getOnlineUsers", Object.keys(userSocketMap)); //keys are authUser._id
 
   //socket.on() is used to listen to events. Can be used on both FE and BE
   //comes from useLogout.js, socket.disconnect()
