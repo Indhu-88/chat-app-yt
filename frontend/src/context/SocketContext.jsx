@@ -36,8 +36,8 @@ export const SocketContextProvider = ({ children }) => {
       });
 
       return () => {
-        // setSocket(null); //cleanup: The component unmounts [e.g., user logs out or a different user logs in]
-        socket.close();
+        setSocket(null); //cleanup: The component unmounts [e.g., user logs out or a different user logs in]
+        // socket.close();
       };
     } else {
       if (socket) {
