@@ -12,7 +12,6 @@ import { useSocketContext } from "../context/SocketContext";
 export const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
-  const { socket } = useSocketContext();
 
   const logout = async () => {
     setLoading(true);
@@ -23,17 +22,12 @@ export const useLogout = () => {
       });
 
       const data = await res.json();
-      if (!data) {
+      if (data.error) {
         throw new Error(data.error);
       }
 
       localStorage.removeItem("chat-user");
       setAuthUser(null);
-
-      // disconnect socket so backend cleans up userSocketMap
-      if (socket?.connected) {
-        socket.disconnect();
-      }
     } catch (error) {
       toast.error(error.message);
     } finally {
