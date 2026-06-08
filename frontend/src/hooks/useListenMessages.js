@@ -26,11 +26,11 @@ export const useListenMessages = () => {
     // newMessage-> payload (data object)
     socket?.on("newMsg", (newMessage) => {
       newMessage.shouldShake = true; //flag for animation, custom property name, add shakeClass in Message.jsx
+      console.log(newMessage);
 
       const sound = new Audio(notificationSound); //for sound when msg received
       sound.play();
 
-      // setMessages([...messages, newMessage]); //new msgs
       setMessages([...messages, newMessage]); //real-time incoming messages
     });
 

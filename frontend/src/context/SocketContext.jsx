@@ -17,10 +17,10 @@ export const SocketContextProvider = ({ children }) => {
   // if there is an authenticated user, create connection to BE and send authUser._id
   // run for every change in authUser
   // Socket.IO client connection to your backend server.
-  //CHANGED: http:localhost:5000 to render url
+  //CHANGED: http://localhost:5000 to render url  :  https://chat-app-yt-h8bv.onrender.com/
   useEffect(() => {
     if (authUser) {
-      const socketInstance = io("https://chat-app-yt-h8bv.onrender.com/", {
+      const socketInstance = io("https://chat-app-yt-h8bv.onrender.com", {
         query: {
           userId: authUser._id,
         },
