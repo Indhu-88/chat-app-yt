@@ -4,13 +4,13 @@ import useConversation from "../../zustand/useCoversation";
 // -------------------------------------------------------------------------------
 // functions
 // - SIDEBAR DISPLAY with profilePic, name and icon
-//  - a user is clciked update selectedConversation
-//  - also if already selected User then blue bg
+// - a user is clicked update selectedConversation
+// - also if already selected User then blue bg
 
 // conversation is list of User Object
 // {_id: '6a11f1c7419d58b2ea6ca0bf', fullName: 'Sony', username: 'Sony_123', gender: 'female', profilePic: 'https://avatar.iran.liara.run/public/girl?username=Sony_123', …}
 
-// onlineUsers is an array [] of authUser._id ,basically of online users
+// onlineUsers is an array [] of authUser._id ,basically all online users
 // -------------------------------------------------------------------------------
 
 const Conversation = ({ conversation, emoji, lastIdx }) => {

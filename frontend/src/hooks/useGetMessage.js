@@ -3,9 +3,8 @@ import toast from "react-hot-toast";
 import useConversation from "../zustand/useCoversation";
 
 // ----------------------------------------------------------------------
-// fetch runs only when selectedConversation._id changes.
-// Here we fetch messages of selected user & logged in user from backend using get and update it in zustand messages[]
-// this fn needs to be called only once hence useEffect
+// purpose - get msgs from backend between auth_user(looged in) & sidebar clicked user
+// fetch runs only when a user from sidebar is clicked
 // called from Messages.jsx
 // ----------------------------------------------------------------------
 export const useGetMessages = () => {
@@ -21,6 +20,7 @@ export const useGetMessages = () => {
         const data = await res.json(); //we get all msgs for the id
 
         if (data.error) throw new Error(data.error); //send [] for no msgs
+
         setMessages(data);
       } catch (error) {
         toast.error(error.message);

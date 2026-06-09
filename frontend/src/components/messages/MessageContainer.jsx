@@ -9,6 +9,7 @@ import { useAuthContext } from "../../context/AuthContext";
 // Basically prints the conversation between authUser and selctedConversation user
 // if no selectedConversation user, <NoChatSelected>
 
+// useEffect rerenders for every sidebar user click
 // here useEffect is used to cleanup the conversation msgs
 // runs when the component unmounts or selected user changes from sidebar click
 // ------------------------------------------------------------------------
@@ -37,7 +38,10 @@ const MessageContainer = () => {
             </span>
           </div>
 
+          {/* Body */}
           <Messages />
+
+          {/* footer */}
           <MessageInput />
         </>
       )}

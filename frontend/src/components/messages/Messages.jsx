@@ -10,6 +10,10 @@ import { useEffect, useRef } from "react";
 // ----------------------------------------------------------------------------
 const Messages = () => {
   const { loading, messages } = useGetMessages(); //messages is from useConversation-zustand
+
+  //socket: to listen for instant incoming msgs from the socket
+  useListenMessages();
+
   const lastMessageRef = useRef(); //for last msg view
 
   useEffect(() => {

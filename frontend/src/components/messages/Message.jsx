@@ -16,9 +16,6 @@ const Message = ({ message }) => {
   const { authUser } = useAuthContext(); //logged in user
   const { selectedConversation } = useConversation(); //user from sideBar
 
-  //socket: to listen for incoming msgs from the socket
-  useListenMessages();
-
   const formatedTime = extractTime(message.createdAt);
 
   //msg from loggedIn User or other user
