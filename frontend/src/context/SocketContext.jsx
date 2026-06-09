@@ -14,8 +14,6 @@ export const SocketContextProvider = ({ children }) => {
   const [onlineUsers, setOnlineUsers] = useState([]); //used in Coversation.js
   const { authUser } = useAuthContext(); //logged in user SET in localStorage.setItem()
 
-  // if there is an authenticated user, create connection to BE and send authUser._id
-  // run for every change in authUser
   // Socket.IO client connection to your backend server.
   //CHANGED: http://localhost:5000 to render url  :  https://chat-app-yt-h8bv.onrender.com/
   useEffect(() => {
@@ -28,18 +26,16 @@ export const SocketContextProvider = ({ children }) => {
 
       setSocket(socketInstance);
 
-      // socket.on() is used to listen to events. Can be used on both FE and BE
-      // users is an array of strings with authUser._id
-      // BE : io.emit("getOnlineUsers", Object.keys(userSocketMap));
+      // io.emit("getOnlineUsers", Object.keys(userSocketMap)); //keys are authUser._id
       socketInstance.on("getOnlineUsers", (users) => {
         setOnlineUsers(users);
       });
 
       return () => {
-        setSocket(null); //cleanup: The component unmounts [e.g., user logs out or a different user logs in]
-        // socket.close();
+        socketInstance.close(); //cleanup: The component unmounts [e.g., user logs out or a different user logs in]
       };
     } else {
+      //state socket
       if (socket) {
         socket.close();
         setSocket(null);
@@ -55,7 +51,3 @@ export const SocketContextProvider = ({ children }) => {
 };
 
 // --------------------------------------
-
-// socket.disconnect() → closes the actual connection.
-
-// setSocket(null) → clears your React state reference

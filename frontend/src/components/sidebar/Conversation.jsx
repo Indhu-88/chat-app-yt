@@ -21,7 +21,7 @@ const Conversation = ({ conversation, emoji, lastIdx }) => {
 
   //this helps in getting the online users
   const { onlineUsers } = useSocketContext();
-  const online = onlineUsers.includes(conversation._id);
+  const online = onlineUsers.includes(conversation._id); //T or F
 
   return (
     <>
