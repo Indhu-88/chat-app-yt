@@ -17,6 +17,7 @@ const Messages = () => {
 
   const lastMessageRef = useRef(); //for last msg view
 
+  //auto‑scroll the chat view to the latest message whenever the messages array changes
   useEffect(() => {
     setTimeout(() => {
       lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });
