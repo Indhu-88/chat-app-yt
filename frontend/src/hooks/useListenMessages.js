@@ -16,7 +16,6 @@ export const useListenMessages = () => {
   useEffect(() => {
     socket?.on("newMsg", (newMessage) => {
       newMessage.shouldShake = true; //flag for animation, custom property name, add shakeClass in Message.jsx
-      console.log(newMessage);
 
       const sound = new Audio(notificationSound); //for sound when msg received
       sound.play();
@@ -27,7 +26,7 @@ export const useListenMessages = () => {
     return () => {
       socket?.off("newMsg");
     };
-  }, [socket, setMessages]); //add messages
+  }, [socket, setMessages, messages]); //add messages
 };
 
 // ---------------------------------WHY useEffect()-------------------
